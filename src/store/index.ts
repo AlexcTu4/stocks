@@ -88,9 +88,4 @@ export const store  = createStore<State>({
             }
         }
     },
-    getters:{
-        stockByC(state: State,c: string){
-            return state.stocks[c];
-        }
-    }
 })
