@@ -86,6 +86,9 @@ export const store  = createStore<State>({
             ws.onclose = () =>{
                 console.log('WS closed!');
             }
+            // setTimeout(()=>{
+            //     ws.close();
+            // },10000)
         }
     },
 })

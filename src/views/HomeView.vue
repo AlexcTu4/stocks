@@ -31,7 +31,13 @@ export default {
 
 <template>
   <main>
-      <div :class="{[$style.wrapper]:true, [$style.spinner] : loading}">
+      <div :class="{[$style.wrapper]:true}">
+          <div
+            v-if="loading"
+            :class="$style.spinner"
+          >
+            <img src="@/assets/images/spinner.gif" alt="spinner">
+          </div>
           <div :class="$style.item" v-for="stock in stocks" :key="stock['c']" >
               <div :class="$style.item__half">
                   <div :class="$style.item__ticker">
@@ -73,14 +79,21 @@ export default {
   .wrapper{
     display: flex;
     flex-wrap: wrap;
-      background: white;
-        height: 90%;
-      width: 100%;
+    background: white;
+    height: 90%;
+    width: 100%;
     overflow-y: auto;
-    &.spinner{
-      background-image: url("./spinner.gif");
-      background-repeat: no-repeat;
-      background-position: center;
+    position: relative;
+    .spinner{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      img{
+        margin: 150px auto;
+      }
     }
     &.spinner > .item{
       opacity: 0.3;
