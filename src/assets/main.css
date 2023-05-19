@@ -1,0 +1,29 @@
+@import './base.css';
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/src/assets/fonts/FontsFree-Net-SFProText-Regular-1.ttf');
+}
+#app {
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: 'SF Pro Text';
+  font-style: normal;
+  font-weight: 400;
+}
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #cccccc; }
+::-webkit-scrollbar-track {  background-color: #999;}
+::-webkit-scrollbar-track-piece {
+  width: 3px;
+  background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+}
+::-webkit-scrollbar-corner { background-color: #999;}
+::-webkit-resizer { background-color: #cccccc;}
+main{
+  height: 100%;
+}
