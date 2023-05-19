@@ -1,15 +1,17 @@
 <script  lang="ts">
+// @ts-ignore
 import {mapState, useStore} from "vuex";
 import {key} from "@/store";
 import myFooter from '@/components/footer.vue'
-import {Stock} from '@/types/stock'
+import {type Stocks} from '@/types/stock'
 
 export default {
     components:{
         myFooter
     },
     setup () {
-        let stocks : Stock[];
+        let stocks : Stocks;
+      // @ts-ignore
         const store = useStore(key)
 
     },
@@ -29,31 +31,31 @@ export default {
 <template>
   <main>
       <div :class="$style.wrapper">
-          <div :class="$style.item" v-for="stock in stocks" :key="stock.c">
+          <div :class="$style.item" v-for="stock in stocks" :key="stock['c']" >
               <div :class="$style.item__half">
                   <div :class="$style.item__ticker">
-                      {{ stock.c }}
+                      {{ stock['c'] }}
                   </div>
                   <div :class="$style.item__info">
                       <div :class="$style.item__ltr">
-                          {{ stock.ltr }}
+                          {{ stock['ltr'] }}
                       </div>
                       <div :class="$style.item__name">
-                          {{ stock.name }}
+                          {{ stock['name'] }}
                       </div>
                   </div>
               </div>
 
               <div :class="$style.item__half">
-                  <div :class="{[$style.item__ltp]: true, [$style.positive] : stock.ltp_positive, [$style.negative] : stock.ltp_negative}">
-                      {{ stock.ltp }}
+                  <div :class="{[$style.item__ltp]: true, [$style.positive] : stock['ltp_positive'], [$style.negative] : stock['ltp_negative']}">
+                      {{ stock['ltp'] }}
                   </div>
                   <div :class="$style.item__info">
-                      <div :class="{[$style.item__pcp]: true, [$style.positive]: stock.pcp > 0,[$style.negotive]: stock.pcp < 0}">
-                          {{ stock.pcp }}
+                      <div :class="{[$style.item__pcp]: true, [$style.positive]: stock['pcp'] > 0,[$style.negotive]: stock['pcp'] < 0}">
+                          {{ stock['pcp'] }}
                       </div>
-                      <div :class="{[$style.item__chg]: true,[$style.positive]: stock.chg > 0,[$style.negotive]: stock.chg < 0}">
-                          {{ stock.chg }} %
+                      <div :class="{[$style.item__chg]: true,[$style.positive]: stock['chg'] > 0,[$style.negotive]: stock['chg'] < 0}">
+                          {{ stock['chg'] }} %
                       </div>
                   </div>
 

@@ -3,12 +3,12 @@
 import {InjectionKey} from 'vue'
 //@ts-ignore
 import {Commit, createStore, Store} from 'vuex'
-import type {Stocks} from "@/types/stock";
+import {type Stocks} from "@/types/stock";
 import { nextTick } from 'vue'
 // define your typings for the store state
 export interface State {
     count: number,
-    stocks: Stocks | any[]
+    stocks: Stocks
 }
 
 // define injection key
