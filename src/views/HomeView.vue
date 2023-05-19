@@ -78,7 +78,7 @@ export default {
       width: 100%;
     overflow-y: auto;
     &.spinner{
-      background-image: url("./src/assets/images/spinner.gif");
+      background-image: url("./images/spinner.gif");
       background-repeat: no-repeat;
       background-position: center;
     }
