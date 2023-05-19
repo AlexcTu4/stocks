@@ -21,7 +21,8 @@ export default {
 
     },
     computed: mapState([
-        'stocks'
+        'stocks',
+        'loading'
     ])
 
 }
@@ -30,7 +31,7 @@ export default {
 
 <template>
   <main>
-      <div :class="$style.wrapper">
+      <div :class="{[$style.wrapper]:true, [$style.spinner] : loading}">
           <div :class="$style.item" v-for="stock in stocks" :key="stock['c']" >
               <div :class="$style.item__half">
                   <div :class="$style.item__ticker">
@@ -65,7 +66,6 @@ export default {
           </div>
       </div>
       <my-footer></my-footer>
-
   </main>
 </template>
 
@@ -77,6 +77,14 @@ export default {
         height: 90%;
       width: 100%;
     overflow-y: auto;
+    &.spinner{
+      background-image: url("./src/assets/images/spinner.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &.spinner > .item{
+      opacity: 0.3;
+    }
 
     .item{
         display: flex;

@@ -51,7 +51,9 @@ export default {
 <style module lang="scss">
   .footer_wrapper{
     height: 10%;
+    width: 100%;
     position: sticky;
+    background: white;
     bottom: 0;
     border-top: 1px solid #E5E7EB;
     display: flex;

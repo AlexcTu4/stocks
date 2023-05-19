@@ -5,10 +5,12 @@ import {InjectionKey} from 'vue'
 import {Commit, createStore, Store} from 'vuex'
 import {type Stocks} from "@/types/stock";
 import { nextTick } from 'vue'
+import axios from 'axios'
 // define your typings for the store state
 export interface State {
     count: number,
-    stocks: Stocks
+    stocks: Stocks,
+    loading: boolean
 }
 
 // define injection key
@@ -17,11 +19,12 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export const store  = createStore<State>({
     state:  {
         stocks: {},
-        count: 7
+        count: 7,
+        loading: true
     },
     mutations: {
         SET_STOCK(state : State, data: any){
-            // console.log({...data});
+            console.log({...data});
             //@ts-ignore
             let ltp_positive = state.stocks[data.c]?.ltp_positive??false;
             //@ts-ignore
@@ -30,7 +33,6 @@ export const store  = createStore<State>({
             //@ts-ignore
             if( state.stocks[data.c] && data.ltp){
                 //@ts-ignore
-                console.log(data.c,state.stocks[data.c].ltp,data.ltp);
                 //@ts-ignore
                 ltp_positive = state.stocks[data.c].ltp > data.ltp;
                 //@ts-ignore
@@ -57,6 +59,9 @@ export const store  = createStore<State>({
         },
         SET_COUNT(state: State, value: number){
             state.count = value;
+        },
+        SET_LOADING(state: State, value: boolean){
+            state.loading = value;
         }
     },
     actions: {
@@ -72,6 +77,7 @@ export const store  = createStore<State>({
                 if(event === 'q'){
                     commit.commit('SET_STOCK', data);
                     commit.commit('SET_COUNT', data.pcp);
+                    commit.commit('SET_LOADING', false);
                 }
             }
             ws.onerror = (resp) =>{
@@ -80,10 +86,11 @@ export const store  = createStore<State>({
             ws.onclose = () =>{
                 console.log('WS closed!');
             }
-            setTimeout(()=>{
-                ws.close();
-            }, 20000)
-
+        }
+    },
+    getters:{
+        stockByC(state: State,c: string){
+            return state.stocks[c];
         }
     }
 })
