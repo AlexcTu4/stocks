@@ -24,7 +24,7 @@ export const store  = createStore<State>({
     },
     mutations: {
         SET_STOCK(state : State, data: any){
-            console.log({...data});
+            // console.log({...data});
             //@ts-ignore
             let ltp_positive = state.stocks[data.c]?.ltp_positive??false;
             //@ts-ignore
@@ -86,9 +86,9 @@ export const store  = createStore<State>({
             ws.onclose = () =>{
                 console.log('WS closed!');
             }
-            // setTimeout(()=>{
-            //     ws.close();
-            // },10000)
+            setTimeout(()=>{
+                ws.close();
+            },10000)
         }
     },
 })
